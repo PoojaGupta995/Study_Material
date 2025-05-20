@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Material Archive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0077ff;
+      --background-color: #f0f4f8;
+      --text-color: #222;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      --highlight: #e3f2fd;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    header {
+      background: linear-gradient(90deg, #0077ff, #00c6ff);
+      padding: 2rem;
+      text-align: center;
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .dropdown-section {
+      margin-bottom: 2rem;
+    }
+
+    label {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    select {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      background: #f9fcff;
+    }
+
+    ul {
+      padding-left: 0;
+      list-style-type: none;
+    }
+
+    li {
+      margin: 12px 0;
+      background: var(--highlight);
+      padding: 14px 18px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    li:hover {
+      transform: translateY(-3px);
+      background: #d0eaff;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.95rem;
+      background-color: #e9f5ff;
+      margin-top: 3rem;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📘 Study Material & Previous Year Papers</h1>
+    <p>Get instant access to past 20 years of exam papers</p>
+  </header>
+
+  <div class="container">
+    <div class="dropdown-section">
+      <label for="examSelect">🎓 Select Exam Name:</label>
+      <select id="examSelect" onchange="showPapers()">
+        <option value="">-- Choose Exam --</option>
+        <option value="RAS">RAS</option>
+        <option value="SSC">SSC</option>
+        <option value="REET">REET</option>
+      </select>
+    </div>
+
+    <ul id="paperList"></ul>
+  </div>
+
+  <footer>
+    &copy; 2025 EduSmart | Designed with ❤️ for learners
+  </footer>
+
+  <script>
+    const papers = {
+      RAS: Array.from({ length: 20 }, (_, i) => ({
+        year: 2024 - i,
+        link: `https://example.com/ras/ras-paper-${2024 - i}.pdf`
+      })),
+      SSC: Array.from({ length: 20 }, (_, i) => ({
+        year: 2024 - i,
+        link: `https://example.com/ssc/ssc-paper-${2024 - i}.pdf`
+      })),
+      REET: Array.from({ length: 20 }, (_, i) => ({
+        year: 2024 - i,
+        link: `https://example.com/reet/reet-paper-${2024 - i}.pdf`
+      }))
+    };
+
+    function showPapers() {
+      const exam = document.getElementById('examSelect').value;
+      const paperList = document.getElementById('paperList');
+      paperList.innerHTML = '';
+
+      if (papers[exam]) {
+        papers[exam].forEach(paper => {
+          const li = document.createElement('li');
+          li.innerHTML = `<a href="${paper.link}" target="_blank">📥 Download ${exam} Paper ${paper.year}</a>`;
+          paperList.appendChild(li);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
